@@ -1,7 +1,7 @@
-TypeScript React Hook "usePreviousValue" Demo
+TypeScript React Hook "useRunInTicks" Demo
 =============================================
 
-如何定义一个hook来保存上一次的值
+在不同的ticks中依次执行一些函数，以便中间的函数拿到更新后的值
 
 ```
 npm install

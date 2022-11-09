@@ -1,15 +1,19 @@
-import React, {useState} from 'react'
-import usePreviousValue from "./usePreviousValue";
+import React, {useState, FC} from 'react'
+import {useRunInTicks} from './useRunInTicks';
 
-export default function Hello() {
+export const Hello: FC = () => {
   const [inputText, setInputText] = useState('aaa');
 
-  const previousText = usePreviousValue(inputText);
+  const run = useRunInTicks([() => {
+    console.log("inputText1: ",inputText)
+    setInputText(inputText + "!")
+  }, () => {
+    console.log("inputText2: ",inputText)
+    setInputText(inputText + "#")
+  }]);
 
   return <div>
-    <h1>Hello React</h1>
-    <input type='text' value={inputText} onChange={e => setInputText(e.target.value)}/>
-    <hr/>
-    {previousText} -> {inputText}
+    <h1>Hello {inputText}</h1>
+    <button onClick={() => run()}>Run</button>
   </div>
 };
